@@ -1,7 +1,7 @@
 #Python program to scrape website 
 #and save quotes from website 
-import requests 
-from bs4 import BeautifulSoup 
+import requests
+from bs4 import BeautifulSoup
 import csv 
 
 URL = "http://www.values.com/inspirational-quotes"
@@ -15,12 +15,14 @@ table = soup.find('div', attrs = {'class':'container'})
 
 for row in table.findAll('div', 
 						attrs = {'class':'col-6 col-lg-3 text-center margin-30px-bottom sm-margin-30px-top'}): 
-	quote = {} 
-	quote['theme'] = row.h5.text 
-	quote['url'] = row.a['href'] 
-	quote['img'] = row.img['src'] 
-	quote['lines'] = row.img['alt'].split(" #")[0] 
-	quote['author'] = row.img['alt'].split(" #")[1] 
+	quote = {
+		'theme': row.h5.text,
+		'url': row.a['href'],
+		'img': row.img['src'],
+		'lines': row.img['alt'].split(" #")[0],
+	}
+
+	quote['author'] = row.img['alt'].split(" #")[1]
 	quotes.append(quote) 
 
 filename = 'inspirational_quotes.csv'
