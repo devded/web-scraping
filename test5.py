@@ -38,22 +38,20 @@ image_source = []
 for image in all_images:
     image = image.get('src')
     image_source.append(image)
-    
+
 image_source[5:]
 
 import os
 import wget
 
 path = os.getcwd()
-path = os.path.join(path, search_term + "s")
+path = os.path.join(path, f"{search_term}s")
 
 #create the directory
 os.mkdir(path)
 
 path
 
-counter = 0
-for image in image_source:
+for counter, image in enumerate(image_source):
     save_as = os.path.join(path, search_term + str(counter) + '.jpg')
     wget.download(image, save_as)
-    counter += 1
